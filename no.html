@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Decision</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            transition: font-size 0.3s ease;
+        }
+        .yes-button {
+            background-color: #4caf50;
+            color: white;
+        }
+        .no-button {
+            background-color: #f44336;
+            color: white;
+        }
+        .sticker {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+        <div class="buttons">
+            <button class="button yes-button" id="yesButton">Yes</button>
+            <button class="button no-button" id="noButton">No</button>
+        </div>
+        <div class="sticker">
+            <img src="sticker.gif" alt="Cute animated sticker">
+        </div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        let clickCount = 0;
+
+        const messages = [
+            "Are you sure?",
+            "Really Sure??",
+            "Are you positive?",
+            "Pookie Please",
+            "Just think about it!!",
+            "If you say no. I will be really sad...",
+            "I will be very sad",
+            "I will be very very very sad..."
+        ];
+
+        noButton.addEventListener('click', () => {
+            if (clickCount < messages.length) {
+                noButton.textContent = messages[clickCount];
+                clickCount++;
+            } else {
+                yesButton.style.width = '100vw';
+                yesButton.style.height = '100vh';
+                yesButton.style.fontSize = '50px';
+                yesButton.textContent = "YES!";
+                noButton.style.display = 'none';
+            }
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 5) + 'px';
+        });
+    </script>
+</body>
+</html>
